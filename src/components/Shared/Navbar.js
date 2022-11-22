@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { signOut } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
@@ -7,22 +7,30 @@ import useCart from "../Hooks/useCart";
 import { themeChange } from "theme-change";
 const Navbar = () => {
   const [cart] = useCart();
-  const [darkMode,setDarkMode] = useState('winter')
-  const setDar = ()=>{ 
-    if(darkMode == 'winter'){
-      setDarkMode('dracula')
-      localStorage.setItem('theme', 'dracula');
-    }else{
-      setDarkMode('winter')
-      localStorage.setItem('theme', 'winter');
-    } }
+  const [darkMode, setDarkMode] = useState("winter");
+  const [check,setCheck] = useState(false)
+  const setDar = () => {
+    if (darkMode == "winter") {
+      setDarkMode("dracula");
+      setCheck(true)
+      localStorage.setItem("theme", "dracula");
+    } else {
+      setDarkMode("winter");
+      setCheck(false)
+      localStorage.setItem("theme", "winter");
+    }
+  };
   const navigate = useNavigate();
   const [user, loading, error] = useAuthState(auth);
   useEffect(() => {
     themeChange(false);
-    const currentTheme = localStorage.getItem('theme')
-    setDarkMode(currentTheme)
-    
+    const currentTheme = localStorage.getItem("theme");
+    setDarkMode(currentTheme);
+    if(currentTheme=='winter'){
+      setCheck(false)
+    }else{
+      setCheck(true)
+    }
 
     // 👆 false parameter is required for react project
   }, [darkMode]);
@@ -82,6 +90,7 @@ const Navbar = () => {
             <li>
               <Link to="/signup">SignUp</Link>
             </li>
+            
           </ul>
         </div>
       </div>
@@ -165,6 +174,11 @@ const Navbar = () => {
                   <span className="badge">New</span>
                 </a>
               </li>
+              <li className="flex flex-row items-center">
+              <span>☀️</span>
+              <input onChange={setDar} type="checkbox" className="toggle" checked={check} />
+              <span>🌙</span>
+              </li>
               <li>
                 <button
                   onClick={() => {
@@ -175,10 +189,6 @@ const Navbar = () => {
                   Dashboard
                 </button>
               </li>
-              <li>
-              <button onClick={setDar}  data-toggle-theme="winter,dracula" data-act-class="ACTIVECLASS">Change darkmode</button>
-              </li>
-
               <li>
                 <button
                   onClick={() => handleSignout()}
