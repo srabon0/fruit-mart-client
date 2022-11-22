@@ -2,7 +2,7 @@ import React from "react";
 import heroImg from '../../../assests/fruitshop.png'
 const Hero = () => {
   return (
-    <div className="hero min-h-screen bg-white mx-auto">
+    <div className="hero min-h-screen bg-base-200 mx-auto">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img
           src={heroImg}

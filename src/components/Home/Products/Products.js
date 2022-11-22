@@ -15,10 +15,10 @@ const Products = () => {
   
   },[])
     return (
-        <section className="text-gray-600 body-font">
+        <section className="text-gray-600 body-font bg-base-200">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col">
-            <div className="h-1 bg-gray-200 rounded overflow-hidden">
+            <div className="h-1 bg-base-200 rounded overflow-hidden">
               <div className="w-24 h-full bg-orange-600"></div>
             </div>
             <div className="flex flex-wrap sm:flex-row flex-col py-6 mb-12">
