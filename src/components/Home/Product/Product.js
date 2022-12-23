@@ -36,9 +36,12 @@ const Product = ({ fruit }) => {
       <h2 className="text-sm font-medium title-font text-gray-900 mt-1">
         ${price}
       </h2>
-      <button
+      <div className="flex flex-row gap-2">
+        <p className="w-2/3 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, illo? Rem, aliquid beatae possimus, ut qui quae dolore similique sint architecto dolores incidunt. Perspiciatis ullam aliquid sapiente, harum voluptatem illum.</p>
+<div className="flex flex-col w-1/3">
+<button
       onClick={()=>{addToCart(fruitAddedToCart)}}
-        className="btn btn-sm bg-orange-600 text-white border-none inline-flex items-center mt-3"
+        className="btn btn-sm bg-orange-600 text-white text-xs border-none inline-flex items-center mt-3"
       >
         Add to cart
         <svg
@@ -55,10 +58,13 @@ const Product = ({ fruit }) => {
       </button>
       <button
       onClick={()=>{ navigate(`/details/${_id}`) }}
-        className="btn btn-sm bg-orange-600 text-white border-none inline-flex items-center mt-3"
+        className="btn btn-sm bg-orange-600 text-white  text-xs border-none inline-flex items-center mt-3"
       >
         View details
       </button>
+</div>
+      
+      </div>
     </div>
   );
 };

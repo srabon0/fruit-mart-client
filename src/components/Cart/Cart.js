@@ -1,9 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import useCart from "../Hooks/useCart";
 import CartRow from "./CartRow";
 
 const Cart = () => {
   const [cart] = useCart();
+  const navigate = useNavigate()
 
   const initialValue = 0;
   const amountTotal = cart.reduce(
@@ -14,7 +16,8 @@ const Cart = () => {
 
   return (
     <div className="w-2/3 mx-auto">
-      <table class="table table-zebra w-full">
+      {
+        cart.length ? <table class="table table-zebra w-full">
         <thead>
           <tr>
             <th>#</th>
@@ -37,9 +40,23 @@ const Cart = () => {
           <td></td>
           <td>Total</td>
           <td>{amountTotal}</td>
+          <button onClick={()=>{navigate('/shipping-details')}} className="btn btn-secondary btn-sm my-3 ml-2">place order</button>
           </tr>: <></>  }
         </tbody>
-      </table>
+      </table> : 
+      <div className="w-2/3 mx-auto my-10">
+      <div className="card w-full bg-orange-600 text-white">
+                  <div className="card-body items-center text-center">
+                    <h2 className="card-title">Sorry!</h2>
+                    <p>Cart is Empty</p>
+                    <div className="card-actions justify-end">
+                      <button onClick={()=>{navigate('/')}} className="btn btn-dark">Return to home</button>
+                      
+                    </div>
+                  </div>
+                </div>
+                </div>
+      }
     </div>
   );
 };

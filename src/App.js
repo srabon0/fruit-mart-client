@@ -15,6 +15,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Orders from "./components/Dashboard/Orders";
 import Payment from "./components/Dashboard/Payment";
 import AddProduct from "./components/Dashboard/AddProduct";
+import ShippingInfo from "./components/ShippingInfo/ShippingInfo";
 
 export const CartContext = createContext();
 function App() {
@@ -36,6 +37,14 @@ function App() {
             element={
               <RequireAuth>
                 <About />
+              </RequireAuth>
+            }
+          ></Route>
+          <Route
+            path="/shipping-details"
+            element={
+              <RequireAuth>
+                <ShippingInfo/>
               </RequireAuth>
             }
           ></Route>

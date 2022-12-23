@@ -1,39 +1,38 @@
 import React from "react";
-import auth from "../../../firebase.init"
+import auth from "../../../firebase.init";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import useToken from "../useToken";
 
 const Login = () => {
-    const navigate = useNavigate()
-    const [
-        signInWithEmailAndPassword,
-        user,
-        loading,
-        error,
-      ] = useSignInWithEmailAndPassword(auth);
-      if (error) {
-        return (
-          <div>
-            <p>Error: {error.message}</p>
-          </div>
-        );
-      }
-      if (loading) {
-        return <p>Loading...</p>;
-      }
-      if (user) {
-        navigate("/")
-      }
-    
+  const navigate = useNavigate();
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const [token] = useToken(user)
+  if (error) {
+    return (
+      <div>
+        <p>Error: {error.message}</p>
+      </div>
+    );
+  }
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (token) {
+    console.log("user valid token",JSON.stringify(token))
+    navigate("/");
+  }
+
   const handleLogin = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log("Form Submitted", email,password);
-    if(email && password ){
-        await signInWithEmailAndPassword(email, password)
-    }else{
-        return
+    console.log("Form Submitted", email, password);
+    if (email && password) {
+      await signInWithEmailAndPassword(email, password);
+    } else {
+      return;
     }
   };
   return (
@@ -45,7 +44,7 @@ const Login = () => {
             To Order fresh Furits from the fruitMart you must be a valid user.
           </p>
         </div>
-        <form className="w-4/5"  onSubmit={handleLogin}>
+        <form className="w-4/5" onSubmit={handleLogin}>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <div className="card-body">
               <div className="form-control">
@@ -78,7 +77,11 @@ const Login = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <input type="submit" value="Login" className="btn bg-orange-600" />
+                <input
+                  type="submit"
+                  value="Login"
+                  className="btn bg-orange-600"
+                />
               </div>
             </div>
           </div>
