@@ -1,14 +1,14 @@
 import React from "react";
 import { useState } from "react";
-import useCart from "../Hooks/useCart";
+import useCart from "../../components/Hooks/useCart";
 
 const CartRow = ({ sl, item }) => {
   const { _id, name, price } = item;
-  const [cart,setCart,updateItem] = useCart();
+  const [cart, setCart, updateItem] = useCart();
   const [qty, setQty] = useState(1);
 
   const deleteFromCart = (id) => {
-    console.log("for delete", id)
+    console.log("for delete", id);
     const filtered = cart.filter((obj) => obj._id !== String(id));
     setCart(filtered);
     console.log(filtered);
@@ -37,8 +37,17 @@ const CartRow = ({ sl, item }) => {
           <button onClick={() => increaseQty(_id)}>+</button>{" "}
         </span>
       </td>
-      <td>{price*qty}</td>
-      <td> <button className="btn btn-sm btn-error font-bold text-sm" onClick={()=>deleteFromCart(_id)} > X </button> </td>
+      <td>{price * qty}</td>
+      <td>
+        {" "}
+        <button
+          className="btn btn-sm btn-error font-bold text-sm"
+          onClick={() => deleteFromCart(_id)}
+        >
+          {" "}
+          X{" "}
+        </button>{" "}
+      </td>
     </tr>
   );
 };

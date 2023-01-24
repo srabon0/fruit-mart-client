@@ -12,9 +12,9 @@ const useToken = (user) => {
     if (email) {
       const url = `http://localhost:5000/api/v1/users/login`;
       axios.post(url, currentUser, { headers }).then((res) => {
-        console.log("TOken gen from backend",res.data);
-        const token=res.data.token;
-        localStorage.setItem('accessToken',token);
+        console.log("TOken gen from backend", res.data);
+        const token = res.data.token;
+        localStorage.setItem("accessToken", token);
         setToken(token);
       });
     }

@@ -2,7 +2,7 @@ import React from "react";
 import auth from "../../../firebase.init";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import useToken from "../useToken";
+import useToken from "../../../components/Login/useToken";
 
 const Login = () => {
   const navigate = useNavigate();
