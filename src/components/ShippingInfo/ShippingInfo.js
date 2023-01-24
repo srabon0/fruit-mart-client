@@ -31,7 +31,7 @@ const submitOrder = (event) =>{
             name="customer_name"
             placeholder="Name here"
             className="input input-bordered w-full "
-            onBlur={(e)=>{
+            onKeyUp={(e)=>{
                 console.log(e.target.value)
                 setCustomerName(e.target.value)}}
           />
@@ -51,7 +51,7 @@ const submitOrder = (event) =>{
             placeholder="Email here"
             className="input input-bordered w-full"
             name="customer_email"
-            onBlur={(e)=>setCustomerEmail(e.target.value)}
+            onKeyUp={(e)=>setCustomerEmail(e.target.value)}
           />
           {
             valid && customerEmail && <label className="label">
@@ -69,7 +69,7 @@ const submitOrder = (event) =>{
             placeholder="Type here"
             className="input input-bordered w-full "
             name="customer_phone"
-            onBlur={(e)=>setCustomerPhone(e.target.value)}
+            onKeyUp={(e)=>setCustomerPhone(e.target.value)}
           />
           {
             valid && customerPhone && <label className="label">
@@ -87,7 +87,7 @@ const submitOrder = (event) =>{
             placeholder="Type here"
             className="input input-bordered w-full "
             name="customer_address"
-            onBlur={(e)=>setCustomerAddress(e.target.value)}
+            onKeyUp={(e)=>setCustomerAddress(e.target.value)}
           />
           {
             valid && customerAddress && <label className="label">

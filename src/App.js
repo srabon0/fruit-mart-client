@@ -16,6 +16,7 @@ import Orders from "./components/Dashboard/Orders";
 import Payment from "./components/Dashboard/Payment";
 import AddProduct from "./components/Dashboard/AddProduct";
 import ShippingInfo from "./components/ShippingInfo/ShippingInfo";
+import ProductList from "./components/Dashboard/ProductList";
 
 export const CartContext = createContext();
 function App() {
@@ -59,6 +60,7 @@ function App() {
          <Route index element={<Orders />} />
          <Route path="/dashboard/payment" element={<Payment />} />
          <Route path="/dashboard/addproduct" element={<AddProduct />} />
+         <Route path="/dashboard/productlist" element={<ProductList />} />
 
 
 

@@ -17,7 +17,7 @@ const Cart = () => {
   return (
     <div className="w-2/3 mx-auto">
       {
-        cart.length ? <table class="table table-zebra w-full">
+        cart.length ? <table className="table table-zebra w-full">
         <thead>
           <tr>
             <th>#</th>
