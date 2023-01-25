@@ -20,7 +20,7 @@ const Cart = () => {
         </thead>
         <tbody>
           {
-            cart.map((item)=><CartRow key={item._id} fruit={item} ></CartRow>)
+            cart?.sort((a, b) => a.cartPosition - b.cartPosition)?.map((item)=><CartRow key={item._id} fruit={item} ></CartRow>)
           }
         </tbody>
       </table>
