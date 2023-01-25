@@ -1,82 +1,44 @@
-// import React from "react";
-// import { useNavigate } from "react-router-dom";
-// import useCart from "../../components/Hooks/useCart";
-// import CartRow from "./CartRow";
+import React from "react";
+import { useSelector } from "react-redux";
+import CartRow from "./CartRow";
 
-// const Cart = () => {
-//   const [cart] = useCart();
-//   const navigate = useNavigate();
+const Cart = () => {
+  const cart = useSelector((state)=>state.fruitState.cart)
+  return (
+    <>
+    {
+      cart.length ? 
+      <div className="overflow-x-auto w-full">
+      <table className="table w-full">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Job</th>
+            <th>Favorite Color</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            cart.map((item)=><CartRow key={item._id} fruit={item} ></CartRow>)
+          }
+        </tbody>
+      </table>
+    </div>
+    :<div className="card w-96 glass">
+    <figure><img src="https://placeimg.com/400/225/arch" alt="car!"/></figure>
+    <div className="card-body">
+      <h2 className="card-title">Life hack</h2>
+      <p>How to park your car at your garage?</p>
+      <div className="card-actions justify-end">
+        <button className="btn btn-primary">Learn now!</button>
+      </div>
+    </div>
+  </div>
+    }
 
-//   const initialValue = 0;
-//   const amountTotal = cart.reduce(
-//     (accumulator, current) => accumulator + current.price * current.qty,
-//     initialValue
-//   );
-//   console.log(amountTotal);
+    </>
+  );
+};
 
-//   return (
-//     <div className="w-2/3 mx-auto">
-//       {cart.length ? (
-//         <table className="table table-zebra w-full">
-//           <thead>
-//             <tr>
-//               <th>#</th>
-//               <th>Fruit Name</th>
-//               <th>Price</th>
-//               <th>Quantity</th>
-//               <th>Total</th>
-//               <th>Action</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {cart?.map((item, index) => (
-//               <CartRow key={index} item={item} sl={index}></CartRow>
-//             ))}
-
-//             {amountTotal > 0 ? (
-//               <tr>
-//                 <td></td>
-//                 <td></td>
-//                 <td></td>
-//                 <td></td>
-//                 <td>Total</td>
-//                 <td>{amountTotal}</td>
-//                 <button
-//                   onClick={() => {
-//                     navigate("/shipping-details");
-//                   }}
-//                   className="btn btn-secondary btn-sm my-3 ml-2"
-//                 >
-//                   place order
-//                 </button>
-//               </tr>
-//             ) : (
-//               <></>
-//             )}
-//           </tbody>
-//         </table>
-//       ) : (
-//         <div className="w-2/3 mx-auto my-10">
-//           <div className="card w-full bg-orange-600 text-white">
-//             <div className="card-body items-center text-center">
-//               <h2 className="card-title">Sorry!</h2>
-//               <p>Cart is Empty</p>
-//               <div className="card-actions justify-end">
-//                 <button
-//                   onClick={() => {
-//                     navigate("/");
-//                   }}
-//                   className="btn btn-dark"
-//                 >
-//                   Return to home
-//                 </button>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Cart;
+export default Cart;

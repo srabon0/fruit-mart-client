@@ -1,4 +1,4 @@
-import { LOAD_FRUITS, SET_TEST ,DELETE_FRUIT, ADD_TO_CART} from "../actionTypes/fruitActionType";
+import { LOAD_FRUITS, SET_TEST ,DELETE_FRUIT, ADD_TO_CART, REMOVE_FROM_CART, DECRESE_QUANTITY} from "../actionTypes/fruitActionType";
 
 export const loadFruitInStore = (payload) =>{
     console.log("sending payload ", payload)
@@ -33,5 +33,30 @@ export const addToCart = (payload) =>{
     return {
         type:ADD_TO_CART,
         payload:payload
+    }
+}
+
+/**
+ * 
+ * @param {*} payload = FruitData 
+ * @returns  Cart
+ */
+export const decreaseQty = (payload) =>{
+    console.log("Decrease qty ",payload)
+    return {
+        type:DECRESE_QUANTITY,
+        payload:payload
+    }
+}
+
+/**
+ * Remove Product From cart
+ */
+
+export const deleteFromCartStore =(fruitID)=>{
+    console.log("Remove from Cart",fruitID)
+    return {
+        type:REMOVE_FROM_CART,
+        payload:fruitID
     }
 }

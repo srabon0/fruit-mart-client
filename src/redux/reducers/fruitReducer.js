@@ -1,4 +1,4 @@
-import { ADD_TO_CART, DELETE_FRUIT, LOAD_FRUITS, SET_TEST } from "../actionTypes/fruitActionType"
+import { ADD_TO_CART, DECRESE_QUANTITY, DELETE_FRUIT, LOAD_FRUITS, REMOVE_FROM_CART, SET_TEST } from "../actionTypes/fruitActionType"
 
 const initialState = {
     test:"test",
@@ -38,6 +38,25 @@ const fruitReducer = (state=initialState,action)=>{
                 ...state,
                 cart: [...state.cart, { ...action.payload, quantity: 1 }], //if the product is newly added to cart
               };
+        case DECRESE_QUANTITY:
+            if(selectedFruit.quantity>1){
+                const otherItems = state.cart.filter(fruit=>fruit._id!==selectedFruit._id)
+                selectedFruit.quantity=selectedFruit.quantity-1
+                return{
+                    ...state,
+                    cart:[...otherItems,selectedFruit]
+                }
+            }
+            return{
+                ...state,
+                cart:state.cart.filter(item=>item._id!==action.payload._id)
+            }
+        case REMOVE_FROM_CART:
+            return{
+                ...state,
+                cart:state.cart.filter(item=>item._id!==action.payload)
+            }
+
         default:
             return state
 
