@@ -169,22 +169,21 @@ const Navbar = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
+                <p  className="bg-emerald-200 justify-between mb-1">
+                  {user? user?.email :""}
+                </p>
               </li>
-              <li className="flex flex-row items-center">
-              <span>☀️</span>
+              <li>
+              <p className="justify-between mb-1 flex flex-row items-center"> <span>☀️</span>
               <input onChange={setDar} type="checkbox" className="toggle" checked={check} />
-              <span>🌙</span>
+              <span>🌙</span> </p>
               </li>
               <li>
                 <button
                   onClick={() => {
                     navigate("/dashboard");
                   }}
-                  className="justify-between"
+                  className="justify-between mb-1"
                 >
                   Dashboard
                 </button>
@@ -192,7 +191,7 @@ const Navbar = () => {
               <li>
                 <button
                   onClick={() => handleSignout()}
-                  className="btn btn-sm btn-error"
+                  className="justify-between bg-error text-white mb-1"
                 >
                   Signout
                 </button>

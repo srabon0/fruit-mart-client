@@ -44,7 +44,7 @@ const routes = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: <RequireAdmin> <Contact /> </RequireAdmin>,
+        element: <RequireAdmin> <Contact /> </RequireAdmin>, 
       },
       {
         path: "/login",
@@ -82,7 +82,7 @@ const routes = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <ProductList />,
+        element: <ProductList />, //this will also require admin
       },
       {
         path: "add-product",
