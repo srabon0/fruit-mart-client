@@ -1,19 +1,21 @@
 import React from 'react';
 import { useEffect,useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import loadFruitData from '../../../redux/thunk/fetchFruits';
 import Product from '../Product/Product';
     
 
 const Products = () => {
-  const [fruits,setFruits]=useState([])
   const navigate =  useNavigate()
-  useEffect(()=>{
-    const url = "http://localhost:5000/api/v1/fruits";
-    fetch(url)
-    .then(res=>res.json())
-    .then(data=>{setFruits(data.fruits)})
+  const dispatch = useDispatch()
+    useEffect(()=>{
+        dispatch(loadFruitData())
+    },[dispatch])
+    const fruitState = useSelector((state)=>state) //only frut state
+    console.log("whole stt", fruitState);
+    const fruits = fruitState.fruitState.fruits
   
-  },[])
     return (
         <section className="text-gray-600 body-font bg-base-200">
         <div className="container px-5 py-24 mx-auto">
@@ -26,7 +28,7 @@ const Products = () => {
               <p className="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">Street art subway tile salvia four dollar toast bitters selfies quinoa yuccie synth meditation iPhone intelligentsia prism tofu. Viral gochujang bitters dreamcatcher.</p>
             </div>
           </div>
-          <div class="grid grid-cols-1 gap-5 mt-8 xl:mt-12 xl:gap-12 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 mt-8 xl:mt-12 xl:gap-12 lg:grid-cols-3">
           {fruits.map((fruit) => (
             <Product key={fruit._id} fruit={fruit}></Product>
           ))}

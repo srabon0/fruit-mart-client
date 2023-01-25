@@ -22,17 +22,17 @@ const Product = ({ fruit }) => {
 
   return (
     <div
-      class="flex items-end overflow-hidden bg-cover rounded-lg h-[500px]"
+      className="flex items-end overflow-hidden bg-cover rounded-lg h-[500px]"
       style={{ backgroundImage: `url(${picture})` }}
     >
-      <div class="w-full px-8 py-2 overflow-hidden rounded-b-lg backdrop-blur-sm bg-white/60 ">
-        <h2 class="mt-1 text-xl font-semibold text-gray-800 capitalize">
+      <div className="w-full px-8 py-2 overflow-hidden rounded-b-lg backdrop-blur-sm bg-white/60 ">
+        <h2 className="mt-1 text-xl font-semibold text-gray-800 capitalize">
           {name}
         </h2>
-        <p class="mt-2 text-lg tracking-wider text-blue-800">
+        <p className="mt-2 text-lg tracking-wider text-blue-800">
         Price: ${price}
         </p>
-        <p class="my-2  truncate">
+        <p className="my-2  truncate">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
