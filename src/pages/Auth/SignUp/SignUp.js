@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import auth from '../../../firebase.init';
 import { NavLink, useNavigate } from "react-router-dom";
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import useToken from '../../../components/Login/useToken';
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -13,6 +14,8 @@ const SignUp = () => {
         error,
       ] = useCreateUserWithEmailAndPassword(auth);
     
+    const [token] = useToken(user);
+    
       if (error) {
         return (
           <div>
@@ -23,7 +26,7 @@ const SignUp = () => {
       if (loading) {
         return <p>Loading...</p>;
       }
-      if(user){
+      if(token){
         console.log(user);
         navigate("/");
         

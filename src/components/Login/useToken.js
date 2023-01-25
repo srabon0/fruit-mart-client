@@ -10,12 +10,14 @@ const useToken = (user) => {
   };
   useEffect(() => {
     if (email) {
-      const url = `http://localhost:5000/api/v1/users/login`;
+      const url = `http://localhost:5000/api/v1/users/validate`;
       axios.post(url, currentUser, { headers }).then((res) => {
-        console.log("TOken gen from backend", res.data);
-        const token = res.data.token;
-        localStorage.setItem("accessToken", token);
-        setToken(token);
+        if(res.data){
+          const token = res.data.token;
+          localStorage.setItem("accessToken", token);
+          setToken(token);
+        }
+        
       });
     }
   }, [user]);
