@@ -1,24 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import useCart from "../../Hooks/useCart";
+import { addToCart } from "../../../redux/actions/fruitAction";
 const Product = ({ fruit }) => {
-  const [cart, setCart] = useCart();
+  const dispatch= useDispatch()
+  
   const navigate = useNavigate();
   const { _id, name, price, picture } = fruit;
-  const fruitAddedToCart = {
-    ...fruit,
-    qty: 1,
-  };
-  const addToCart = (product) => {
-    const index = cart.findIndex((element) => element._id === product._id);
-    console.log(index);
-    if (index === -1) {
-      const newCart = [...cart, product]; //push
-      setCart(newCart);
-    } else {
-      window.alert("Already exist");
-    }
-  };
 
   return (
     <div
@@ -42,7 +30,7 @@ const Product = ({ fruit }) => {
         </p>
         <button
           onClick={() => {
-            addToCart(fruitAddedToCart);
+            dispatch(addToCart(fruit))
           }}
           className="btn bg-orange-600 btn-sm text-white border-none mr-1"
         >

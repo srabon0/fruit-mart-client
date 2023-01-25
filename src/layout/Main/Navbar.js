@@ -3,10 +3,8 @@ import { signOut } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
-import useCart from "../../components/Hooks/useCart";
 import { themeChange } from "theme-change";
 const Navbar = () => {
-  const [cart] = useCart();
   const [darkMode, setDarkMode] = useState("winter");
   const [check,setCheck] = useState(false)
   const setDar = () => {
@@ -136,7 +134,7 @@ const Navbar = () => {
                 />
               </svg>
               <span className="badge badge-sm indicator-item">
-                {cart?.length || 0}
+                {1 || 0}
               </span>
             </div>
           </label>
@@ -146,7 +144,7 @@ const Navbar = () => {
           >
             <div className="card-body">
               <span className="font-bold text-lg">
-                {cart?.length || 0} items
+                {1 || 0} items
               </span>
               <span className="text-info">Subtotal: $999</span>
               <div className="card-actions">
