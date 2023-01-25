@@ -2,8 +2,15 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CartRow from "./CartRow";
 
+  // const amountTotal = cart.reduce(
+  //   (accumulator, current) => accumulator + current.price * current.qty,
+  //   initialValue
+  // );
+
 const Cart = () => {
-  const cart = useSelector((state)=>state.fruitState.cart)
+  const state = useSelector((state)=>state.fruitState)
+  const cart =  state.cart
+  const cartTotal = state.cartTotal
   return (
     <>
     {
@@ -24,6 +31,7 @@ const Cart = () => {
           }
         </tbody>
       </table>
+      <p> cart total : {cartTotal} </p>
     </div>
     :<div className="card w-96 glass">
     <figure><img src="https://placeimg.com/400/225/arch" alt="car!"/></figure>

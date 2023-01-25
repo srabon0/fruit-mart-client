@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { themeChange } from "theme-change";
+import { useSelector } from "react-redux";
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState("winter");
   const [check,setCheck] = useState(false)
@@ -20,6 +21,9 @@ const Navbar = () => {
   };
   const navigate = useNavigate();
   const [user, loading, error] = useAuthState(auth);
+  const state = useSelector((state)=>state.fruitState)
+  const cartTotal = state.cartTotal;
+  const cart = state.cart;
   useEffect(() => {
     themeChange(false);
     const currentTheme = localStorage.getItem("theme");
@@ -134,7 +138,7 @@ const Navbar = () => {
                 />
               </svg>
               <span className="badge badge-sm indicator-item">
-                {1 || 0}
+                {cart.length} 
               </span>
             </div>
           </label>
@@ -144,9 +148,9 @@ const Navbar = () => {
           >
             <div className="card-body">
               <span className="font-bold text-lg">
-                {1 || 0} items
+              {cart.length} items
               </span>
-              <span className="text-info">Subtotal: $999</span>
+              <span className="text-info">Subtotal: $ {cartTotal}</span>
               <div className="card-actions">
                 <Link to="/cart" className="btn btn-primary btn-block">
                   View cart
