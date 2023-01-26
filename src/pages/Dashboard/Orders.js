@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import loadAllOrders from "../../redux/thunk/fetchOrder";
+import OrderRow from "./OrderRow/OrderRow";
 
 const Orders = () => {
   const dispatch = useDispatch()
@@ -12,14 +13,26 @@ const Orders = () => {
   const orders = orderState.orders
 
   return (
-    <div className="card w-full h-[75vh] bg-base-100 shadow-xl">
-      <div className="card-body">
-        <h2 className="card-title">Card title!</h2>
-        <p>{orders.length}</p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
-        </div>
-      </div>
+    <div className="container border border-red-300 rounded-sm mx-auto">
+      
+        <table className="table w-full">
+          <thead>
+            <tr>
+              <th>SL No.</th>
+              <th>Order Id</th>
+              <th>Customer Name</th>
+              <th>Grand Total</th>
+              <th>Payment Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map((item, index) => (
+              <OrderRow key={index} order={item} index={index}></OrderRow>
+            ))}
+          </tbody>
+        </table>
+      
     </div>
   );
 };
