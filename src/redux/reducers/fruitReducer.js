@@ -24,10 +24,7 @@ const fruitReducer = (state=initialState,action)=>{
             return {
                 ...state,
                 fruits:state.fruits.filter(aFruit=>aFruit._id!=action.payload),
-                cartTotal: state.cart.reduce(
-                    (accumulator, current) => accumulator + current.price * current.quantity,
-                    state.cartTotal
-                  )
+                 
             }
         case ADD_TO_CART:
             //if the product already exist in cart 
@@ -36,20 +33,14 @@ const fruitReducer = (state=initialState,action)=>{
                 selectedFruit.quantity=selectedFruit.quantity+1
                 return{
                     ...state,
-                    cart:[...otherItems,selectedFruit],
-                    cartTotal: state.cart.reduce(
-                        (accumulator, current) => accumulator + current.price * current.quantity,
-                        state.cartTotal
-                      )
+                    cart:[...otherItems,selectedFruit]
+                    
                 }
             }
             return {
                 ...state,
-                cart: [...state.cart, { ...action.payload, quantity: 1 }], //if the product is newly added to cart
-                cartTotal: state.cart.reduce(
-                    (accumulator, current) => accumulator + current.price * current.quantity,
-                    state.cartTotal
-                  )
+                cart: [...state.cart, { ...action.payload, quantity: 1 }] //if the product is newly added to cart
+                 
               };
         case DECRESE_QUANTITY:
             if(selectedFruit.quantity>1){
@@ -58,28 +49,19 @@ const fruitReducer = (state=initialState,action)=>{
                 return{
                     ...state,
                     cart:[...otherItems,selectedFruit],
-                    cartTotal: state.cart.reduce(
-                        (accumulator, current) => accumulator + current.price * current.quantity,
-                        state.cartTotal
-                      )
+                    
                 }
             }
             return{
                 ...state,
                 cart:state.cart.filter(item=>item._id!==action.payload._id),
-                cartTotal: state.cart.reduce(
-                    (accumulator, current) => accumulator + current.price * current.quantity,
-                    state.cartTotal
-                  )
+                 
             }
         case REMOVE_FROM_CART:
             return{
                 ...state,
-                cart:state.cart.filter(item=>item._id!==action.payload),
-                cartTotal: state.cart.reduce(
-                    (accumulator, current) => accumulator + current.price * current.quantity,
-                    state.cartTotal
-                  )
+                cart:state.cart.filter(item=>item._id!==action.payload)
+                 
             }
 
         default:

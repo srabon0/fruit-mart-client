@@ -22,8 +22,12 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [user, loading, error] = useAuthState(auth);
   const state = useSelector((state)=>state.fruitState)
-  const cartTotal = state.cartTotal;
   const cart = state.cart;
+  const initialValue = 0
+  const cartTotal = cart.reduce(
+    (accumulator, current) => accumulator + current.price * current.quantity,
+    initialValue
+  );
   useEffect(() => {
     themeChange(false);
     const currentTheme = localStorage.getItem("theme");

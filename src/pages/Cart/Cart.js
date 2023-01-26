@@ -2,15 +2,16 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CartRow from "./CartRow";
 
-  // const amountTotal = cart.reduce(
-  //   (accumulator, current) => accumulator + current.price * current.qty,
-  //   initialValue
-  // );
+ 
 
 const Cart = () => {
   const state = useSelector((state)=>state.fruitState)
   const cart =  state.cart
-  const cartTotal = state.cartTotal
+  const initialValue = 0
+  const cartTotal = cart.reduce(
+    (accumulator, current) => accumulator + current.price * current.quantity,
+    initialValue
+  );
   return (
     <>
     {
