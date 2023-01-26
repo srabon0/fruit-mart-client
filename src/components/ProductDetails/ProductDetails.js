@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 const ProductDetails = () => {
   const { id } = useParams();
   const [fruit, setFruit] = useState([]);
-  const { name, price, picture, inStock } = fruit;
+  const { name, price, picture, isActive,description } = fruit;
   useEffect(() => {
     const getItem = async () => {
       const headers = {
@@ -98,17 +98,12 @@ const ProductDetails = () => {
               </span>
               <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
                 <p className="text-gray-500">
-                  {inStock ? <span>Instok </span> : ""}
+                  {isActive ? <span>Instok </span> : ""}
                 </p>
               </span>
             </div>
             <p className="leading-relaxed">
-              Fam locavore kickstarter distillery. Mixtape chillwave tumeric
-              sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo
-              juiceramps cornhole raw denim forage brooklyn. Everyday carry +1
-              seitan poutine tumeric. Gastropub blue bottle austin listicle
-              pour-over, neutra jean shorts keytar banjo tattooed umami
-              cardigan.
+              {description}
             </p>
             <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5"></div>
             <div className="flex">

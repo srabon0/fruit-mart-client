@@ -12,8 +12,8 @@ const ProductList = () => {
     console.log("whole stt", fruitState);
     const fruits = fruitState.fruitState.fruits
   return (
-    <div className="container h-full mt-5">
-      <div className="w-full">
+    <div className="container border border-red-300 rounded-sm mx-auto">
+      
         <table className="table w-full">
           <thead>
             <tr>
@@ -28,7 +28,7 @@ const ProductList = () => {
             ))}
           </tbody>
         </table>
-      </div>
+      
     </div>
   );
 };

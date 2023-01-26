@@ -16,11 +16,12 @@ const ProductRow =  ({ fruit })  => {
           </div>
           <div>
             <div className="font-bold">{name}</div>
-            <div className="text-sm opacity-50">Available: 50 pcs</div>
+            <div className="text-sm opacity-50">Available: {quantity} pcs</div>
           </div>
         </div>
       </td>
-      <td>$ {price}</td>
+      <td>${price}</td>
+     
 
       <th>
         <button

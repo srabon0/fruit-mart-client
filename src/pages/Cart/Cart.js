@@ -1,11 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import CartRow from "./CartRow";
 
  
 
 const Cart = () => {
   const state = useSelector((state)=>state.fruitState)
+  const navigate = useNavigate()
   const cart =  state.cart
   const initialValue = 0
   const cartTotal = cart.reduce(
@@ -13,26 +15,37 @@ const Cart = () => {
     initialValue
   );
   return (
-    <>
+    <div className="container mx-auto max-w-6xl mt-4">
     {
       cart.length ? 
       <div className="overflow-x-auto w-full">
       <table className="table w-full">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Job</th>
-            <th>Favorite Color</th>
-            <th></th>
+            <th>Sl no</th>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {
-            cart?.sort((a, b) => a.cartPosition - b.cartPosition)?.map((item)=><CartRow key={item._id} fruit={item} ></CartRow>)
+            cart?.sort((a, b) => a.cartPosition - b.cartPosition)?.map((item,index)=><CartRow key={item._id} fruit={item} index={index} ></CartRow>)
           }
         </tbody>
+        <tfoot>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>Total</th>
+            <th>{cartTotal.toFixed(2)}</th>
+            <th>
+              <button className="btn btn-sm btn-success" onClick={()=>navigate("/shipping-details")} > Proceed </button>
+            </th>
+          </tr>
+        </tfoot>
       </table>
-      <p> cart total : {cartTotal} </p>
     </div>
     :<div className="card w-96 glass">
     <figure><img src="https://placeimg.com/400/225/arch" alt="car!"/></figure>
@@ -46,7 +59,7 @@ const Cart = () => {
   </div>
     }
 
-    </>
+    </div>
   );
 };
 

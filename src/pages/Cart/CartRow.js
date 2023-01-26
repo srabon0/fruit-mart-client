@@ -58,15 +58,16 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart, decreaseQty, deleteFromCartStore } from '../../redux/actions/fruitAction';
 
-const CartRow = ({fruit}) => {
+const CartRow = ({fruit,index}) => {
   const dispatch = useDispatch()
-  const {_id,name,quantity,picture} = fruit
+  const {_id,name,quantity,picture,price} = fruit
   return (
     <tr>
+          <td>{index+1}</td>
             <td>
               <div className="flex items-center space-x-3">
                 <div className="avatar">
-                  <div className="mask mask-squircle w-12 h-12">
+                  <div className="mask mask-squircle w-7 h-12">
                     <img
                       src={picture}
                       alt={_id}
@@ -91,7 +92,7 @@ const CartRow = ({fruit}) => {
               }}
               className='btn btn-xs btn-success text-sm' >+</button>              
             </td>
-            <td>Purple</td>
+            <td>{(price*quantity).toFixed(2)}</td>
             <th>
               <button onClick={()=>dispatch(deleteFromCartStore(_id))} className="btn btn-error btn-sm">X</button>
             </th>

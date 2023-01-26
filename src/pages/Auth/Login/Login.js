@@ -30,7 +30,8 @@ const Login = () => {
     const password = e.target.password.value;
     console.log("Form Submitted", email, password);
     if (email && password) {
-      await signInWithEmailAndPassword(email, password);
+     const userInfo =  await signInWithEmailAndPassword(email, password);
+     console.log("login user Info", userInfo)
     } else {
       return;
     }

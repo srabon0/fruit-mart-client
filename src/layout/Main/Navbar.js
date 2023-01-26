@@ -154,7 +154,7 @@ const Navbar = () => {
               <span className="font-bold text-lg">
               {cart.length} items
               </span>
-              <span className="text-info">Subtotal: $ {cartTotal}</span>
+              <span className="text-info">Subtotal: $ {cartTotal.toFixed(2)}</span>
               <div className="card-actions">
                 <Link to="/cart" className="btn btn-primary btn-block">
                   View cart
