@@ -1,15 +1,15 @@
 import React from "react";
 
-const RowDataModal = ({ index, order }) => {
+const RowDataModal = ({order }) => {
   const { _id, item } = order;
   return (
     <>
-      <input type="checkbox" id={index} className="modal-toggle" />
+      <input type="checkbox" id="ordermodal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box max-w-2xl">
           <h3 className="font-bold text-lg">Item Details</h3>
           <small className="font-bold">Order Id : <span className="badge badge-sm bg-red-200 border-none text-black">{_id}</span></small>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-hidden">
             <table className="table table-zebra w-full">
               <thead>
                 <tr>
@@ -20,7 +20,7 @@ const RowDataModal = ({ index, order }) => {
                 </tr>
               </thead>
               <tbody>
-                {item.map((it, index) => (
+                {item?.map((it, index) => (
                   <tr>
                     <th>{index + 1}</th>
                     <td>
@@ -38,7 +38,7 @@ const RowDataModal = ({ index, order }) => {
             </table>
           </div>
           <div className="modal-action">
-            <label htmlFor={index} className="btn btn-sm btn-warning">
+            <label htmlFor="ordermodal" className="btn btn-sm btn-warning">
               close
             </label>
           </div>

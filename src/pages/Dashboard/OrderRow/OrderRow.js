@@ -3,14 +3,15 @@ import { useDispatch } from "react-redux";
 import RowDataModal from "./RowDataModal";
 
 
-const OrderRow = ({ order, index }) => {
+const OrderRow = ({ order, index,modalOrder }) => {
   const dispatch = useDispatch();
+  const {setModalOrder} = modalOrder
   const { _id, name, email, subtotal } = order;
   return (
     <tr>
       <td>{index + 1}</td>
-      <td>
-        <label htmlFor={index} className="bg-info text-black text-sm rounded-sm underline px-1">{_id}</label>
+      <td >
+        <label onClick={()=>setModalOrder(order)} htmlFor="ordermodal" className="bg-info text-black text-sm rounded-sm underline px-1">{_id}</label>
       </td>
       <td>
         {name}
@@ -25,7 +26,7 @@ const OrderRow = ({ order, index }) => {
       <th>
         <button className="btn btn-error text-white btn-sm">Cancel</button>
       </th>
-      <RowDataModal index={index} order={order} ></RowDataModal>
+      
     </tr>
   );
 };
