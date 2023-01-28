@@ -1,16 +1,16 @@
 import axios from "axios";
-import React from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const ShippingInfo = () => {
   const [customerName, setCustomerName] = useState("");
-  const [customerEmail, setCustomerEmail] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
   const [customerAddress, setCustomerAddress] = useState("");
   const [valid, setValid] = useState(true);
   const state = useSelector((state) => state.fruitState);
+  const currentUser = useSelector((state)=>state.userState.authUser);
+  const customerEmail = currentUser.email
   const navigate = useNavigate();
   const cart = state.cart;
   const initialValue = 0;
@@ -87,10 +87,11 @@ const ShippingInfo = () => {
           <input
             type="email"
             placeholder="Email here"
-            className="input input-bordered w-full"
+            disabled={true}
             name="customer_email"
             autoComplete="off"
-            onKeyUp={(e) => setCustomerEmail(e.target.value)}
+            className="input input-bordered w-full "
+            defaultValue={customerEmail}
           />
           {!valid && !customerEmail && (
             <label className="label">

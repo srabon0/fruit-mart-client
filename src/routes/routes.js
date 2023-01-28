@@ -15,7 +15,6 @@ import ProductList from "../pages/Dashboard/ProductList";
 import AddProduct from "../pages/Dashboard/AddProduct";
 import Payment from "../pages/Dashboard/Payment";
 import Orders from "../pages/Dashboard/Orders";
-import RequireAdmin from "../pages/Auth/RequireAdmin/RequireAdmin";
 
 const routes = createBrowserRouter([
   {
@@ -44,7 +43,7 @@ const routes = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: <RequireAdmin> <Contact /> </RequireAdmin>, 
+        element: <RequireAuth> <Contact /> </RequireAuth>, 
       },
       {
         path: "/login",

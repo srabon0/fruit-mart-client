@@ -1,26 +1,21 @@
 import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import useAdmin from '../../components/Login/useAdmin';
-import auth from '../../firebase.init';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Contact = () => {
-  const [user, loading, error] = useAuthState(auth);
-  const [admin,adminLoading] = useAdmin(user);
-  if (loading||adminLoading) {
-    return <p>Loading user and admin</p>;
-  }
-  if (error) {
+  const currentUser = useSelector((state)=>state.userState.authUser);
+  const navigate = useNavigate()
+  if(currentUser?.role==="Admin"){
     return (
       <div>
-        <p>Error: {error}</p>
+          If admin true this page will load or it will not load
       </div>
-    );
+  );
+
+  }else{
+    navigate('/login');
   }
-    return (
-        <div>
-            If admin true this page will load or it will not load {admin}
-        </div>
-    );
+    
 };
 
 export default Contact;

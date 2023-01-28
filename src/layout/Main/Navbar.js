@@ -4,9 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { themeChange } from "theme-change";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import loadUserInfo from "../../redux/thunk/fetchUser";
+import { resetCurrentUser } from "../../redux/actions/userAction";
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState("winter");
+  const dispatch = useDispatch()
   const [check,setCheck] = useState(false)
   const setDar = () => {
     if (darkMode == "winter") {
@@ -56,6 +59,9 @@ const Navbar = () => {
         <p>Error: {error}</p>
       </div>
     );
+  }
+  if (user) {
+    dispatch(loadUserInfo(user?.email))
   }
   return (
     <div className="navbar bg-orange-500">
@@ -196,7 +202,7 @@ const Navbar = () => {
               </li>
               <li>
                 <button
-                  onClick={() => handleSignout()}
+                  onClick={() => {handleSignout();dispatch(resetCurrentUser())}}
                   className="justify-between bg-error text-white mb-1"
                 >
                   Signout
