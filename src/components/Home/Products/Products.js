@@ -8,20 +8,17 @@ import Product from "../Product/Product";
 const Products = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [keyword,setKeyword] = useState("");
+  const [keyword, setKeyword] = useState("");
+  const [sortfactor, setSortFactor] = useState("");
   useEffect(() => {
     dispatch(loadFruitData());
   }, [dispatch]);
   const fruitState = useSelector((state) => state); //only frut state
-  console.log("whole stt", fruitState);
+  console.log("Sort factor", sortfactor);
   const fruits = fruitState.fruitState.fruits;
 
   let content;
-  content =  fruits?.map((fruit) => (
-    <Product key={fruit._id} fruit={fruit}></Product>
-  ))
-  
-  if(keyword){
+  if (keyword) {
     content = fruits
       ?.filter((v) => {
         if (v.name.includes(keyword)) {
@@ -29,8 +26,16 @@ const Products = () => {
         }
       })
       ?.map((f) => <Product key={f._id} fruit={f}></Product>);
+  } else {
+    if (!keyword && sortfactor === "desc") {
+      content = fruits
+        .map((f) => <Product key={f._id} fruit={f}></Product>).reverse();
+    }else{
+      content = fruits?.map((fruit) => (
+        <Product key={fruit._id} fruit={fruit}></Product>
+      ));
+    }
   }
-  
 
   return (
     <section>
@@ -78,12 +83,16 @@ const Products = () => {
                 Sort By
               </label>
 
-              <select id="SortBy" class="mt-1 text-sm border-gray-300 rounded">
-                <option>Sort By</option>
-                <option value="Title, DESC">Title, DESC</option>
-                <option value="Title, ASC">Title, ASC</option>
-                <option value="Price, DESC">Price, DESC</option>
-                <option value="Price, ASC">Price, ASC</option>
+              <select
+                onChange={(e) => setSortFactor(e.target.value)}
+                id="SortBy"
+                class="mt-1 text-sm border-gray-300 rounded"
+              >
+                <option selected disabled>
+                  Sort By
+                </option>
+                <option value="asc">A-Z</option>
+                <option value="desc">Z-A</option>
               </select>
             </div>
 
@@ -255,7 +264,7 @@ const Products = () => {
                       className="form-control p-4 space-y-1 w-full"
                       placeholder="search here"
                       type="text"
-                      onKeyUp={(e)=>setKeyword(e.target.value)}
+                      onKeyUp={(e) => setKeyword(e.target.value)}
                     />
                   </div>
                 </div>
@@ -269,7 +278,6 @@ const Products = () => {
                 <Product key={fruit._id} fruit={fruit}></Product>
               ))} */}
               {content}
-              
             </ul>
           </div>
         </div>
