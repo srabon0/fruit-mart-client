@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import loadFruitData from "../../../redux/thunk/fetchFruits";
 import Product from "../Product/Product";
+import picture from "../../../assests/nodata.jpg";
 
 const Products = () => {
   const navigate = useNavigate();
@@ -29,8 +30,9 @@ const Products = () => {
   } else {
     if (!keyword && sortfactor === "desc") {
       content = fruits
-        .map((f) => <Product key={f._id} fruit={f}></Product>).reverse();
-    }else{
+        .map((f) => <Product key={f._id} fruit={f}></Product>)
+        .reverse();
+    } else {
       content = fruits?.map((fruit) => (
         <Product key={fruit._id} fruit={fruit}></Product>
       ));
@@ -272,14 +274,22 @@ const Products = () => {
             </div>
           </div>
 
-          <div class="lg:col-span-3">
-            <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {/* {fruits.map((fruit) => (
+          {content.length ? (
+            <div class="lg:col-span-3">
+              <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {/* {fruits.map((fruit) => (
                 <Product key={fruit._id} fruit={fruit}></Product>
               ))} */}
-              {content}
-            </ul>
-          </div>
+                {content}
+              </ul>
+            </div>
+          ) : (
+            <div class="min-w-max">
+              <div className="h-[30vh] w-full">
+                <img src={picture} className="max-w-md object-cover" alt="" />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

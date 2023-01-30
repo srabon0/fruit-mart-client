@@ -15,6 +15,7 @@ import ProductList from "../pages/Dashboard/ProductList";
 import AddProduct from "../pages/Dashboard/AddProduct";
 import Payment from "../pages/Dashboard/Payment";
 import Orders from "../pages/Dashboard/Orders";
+import UpdateProduct from "../pages/Dashboard/UpdateProduct";
 
 const routes = createBrowserRouter([
   {
@@ -86,6 +87,10 @@ const routes = createBrowserRouter([
       {
         path: "add-product",
         element: <AddProduct />,
+      },
+      {
+        path: "update-product/:id",
+        element: <UpdateProduct />,
       },
       {
         path: "payment",

@@ -42,7 +42,6 @@ const AddProduct = () => {
       quantity:quantity,
       description: desc,
       company:company,
-      order_date: new Date().toISOString(),
     };
     console.log(fruitObject);
     const url = `http://localhost:5000/api/v1/fruits/addfruit`;

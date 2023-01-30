@@ -1,12 +1,14 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import deleteFruit from '../../../redux/thunk/deleteFruit';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import deleteFruit from "../../../redux/thunk/deleteFruit";
 
-const ProductRow =  ({ fruit })  => {
-    const dispatch = useDispatch()
-    const { _id, name, picture, price, quantity } = fruit;
-    return (
-        <tr>
+const ProductRow = ({ fruit }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { _id, name, picture, price, quantity } = fruit;
+  return (
+    <tr>
       <td>
         <div className="flex items-center space-x-2">
           <div className="avatar">
@@ -21,7 +23,6 @@ const ProductRow =  ({ fruit })  => {
         </div>
       </td>
       <td>${price}</td>
-     
 
       <th>
         <button
@@ -30,9 +31,12 @@ const ProductRow =  ({ fruit })  => {
         >
           Delete
         </button>
+        <button onClick={() => navigate("update-product/"+_id)} class="btn btn-sm">
+          Edit
+        </button>
       </th>
     </tr>
-    );
+  );
 };
 
 export default ProductRow;

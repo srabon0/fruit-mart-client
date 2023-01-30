@@ -36,6 +36,7 @@ const ShippingInfo = () => {
         vat: vat,
         shippingfee: shippingfee,
         subtotal: subtotal.toFixed(2),
+        order_date: new Date().toISOString(),
       });
       console.log("order object ", orderObject);
       const headers = {
