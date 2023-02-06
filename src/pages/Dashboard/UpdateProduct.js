@@ -76,15 +76,15 @@ const UpdateProduct = () => {
     console.log(data);
   };
   return (
-    <section class="max-w-4xl mt-4 p-6 mx-auto bg-white rounded-md shadow-md ">
-      <h2 class="text-lg font-semibold text-gray-700 capitalize">
+    <section className="max-w-4xl mt-4 p-6 mx-auto bg-white rounded-md shadow-md ">
+      <h2 className="text-lg font-semibold text-gray-700 capitalize">
         Update Fruit {id}
       </h2>
 
       <form onSubmit={updateFruit}>
-        <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
           <div>
-            <label class="text-gray-700 " for="fruitName">
+            <label className="text-gray-700 " for="fruitName">
               Fruit Name
             </label>
             <input
@@ -92,13 +92,13 @@ const UpdateProduct = () => {
               id="fruitName"
               name="fruitName"
               type="text"
-              class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md    focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 -300 focus:outline-none focus:ring"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md    focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 -300 focus:outline-none focus:ring"
               defaultValue={name}
             />
           </div>
 
           <div>
-            <label class="text-gray-700 " for="price">
+            <label className="text-gray-700 " for="price">
               Price
             </label>
             <input
@@ -106,13 +106,13 @@ const UpdateProduct = () => {
               type="number"
               name="price"
               id="price"
-              class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md    focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 -300 focus:outline-none focus:ring"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md    focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 -300 focus:outline-none focus:ring"
               defaultValue={price}
             />
           </div>
 
           <div>
-            <label class="text-gray-700 " for="password">
+            <label className="text-gray-700 " for="password">
               Quantity
             </label>
             <input
@@ -120,39 +120,39 @@ const UpdateProduct = () => {
               id="quantity"
               type="number"
               name="quantity"
-              class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md    focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 -300 focus:outline-none focus:ring"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md    focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 -300 focus:outline-none focus:ring"
               defaultValue={quantity}
             />
           </div>
 
           <div>
-            <label class="text-gray-700 " for="passwordConfirmation">
+            <label className="text-gray-700 " for="passwordConfirmation">
               Picture
             </label>
             <input
               onChange={onUploadFileChange}
               type="file"
               id="picture"
-              class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md    focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 -300 focus:outline-none focus:ring"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md    focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 -300 focus:outline-none focus:ring"
             />
           </div>
         </div>
-        <div class="w-full my-4">
-          <label class="text-gray-700 " for="description">
+        <div className="w-full my-4">
+          <label className="text-gray-700 " for="description">
             Description
           </label>
 
           <textarea
             name="desc"
             id="desc"
-            class="block w-full h-40 px-4 py-2 text-gray-700 bg-white border rounded-md    focus:border-blue-400 -300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 "
+            className="block w-full h-40 px-4 py-2 text-gray-700 bg-white border rounded-md    focus:border-blue-400 -300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 "
             placeholder="description"
             defaultValue={description}
           ></textarea>
         </div>
 
         <div>
-          <label class="text-gray-700" for="fruitName">
+          <label className="text-gray-700" for="fruitName">
             Company
           </label>
           <input
@@ -160,15 +160,15 @@ const UpdateProduct = () => {
             id="company"
             name="company"
             type="text"
-            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md    focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 -300 focus:outline-none focus:ring"
+            className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md    focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 -300 focus:outline-none focus:ring"
             defaultValue={company}
           />
         </div>
 
-        <div class="flex justify-end mt-6">
+        <div className="flex justify-end mt-6">
           <input
             type="submit"
-            class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-orange-600 rounded-md hover:bg-orange-600 focus:outline-none focus:bg-orange-600"
+            className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-orange-600 rounded-md hover:bg-orange-600 focus:outline-none focus:bg-orange-600"
             value="Add Fruit"
           />
         </div>

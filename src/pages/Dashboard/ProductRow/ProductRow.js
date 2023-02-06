@@ -31,7 +31,7 @@ const ProductRow = ({ fruit }) => {
         >
           Delete
         </button>
-        <button onClick={() => navigate("update-product/"+_id)} class="btn btn-sm">
+        <button onClick={() => navigate("update-product/"+_id)} className="btn btn-sm">
           Edit
         </button>
       </th>
