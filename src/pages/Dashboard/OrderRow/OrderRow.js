@@ -10,14 +10,14 @@ const OrderRow = ({ order, index, modalOrder }) => {
     toast(data);
   };
   const initiatePayment = (id) => {
-    const url = "http://localhost:5000/payment/ssl-request/" + id;
+    const url = "https://fruit-mart-server.onrender.com/payment/ssl-request/" + id;
     // window.location.replace(url);
     window.open(url, "_blank");
   };
 
   const verifyPayment = async (orderId) => {
     console.log("verify payment", orderId);
-    const url = "http://localhost:5000/payment/verify";
+    const url = "https://fruit-mart-server.onrender.com/payment/verify";
     const { data } = await axios.post(url, { order_id: orderId });
     if(data.result.modifiedCount){
       verifyDone(data?.message);
@@ -27,7 +27,7 @@ const OrderRow = ({ order, index, modalOrder }) => {
   };
   const confirmShipment = async (orderId) => {
     console.log("verify payment", orderId);
-    const url = "http://localhost:5000/api/v1/orders/confirm-shipping";
+    const url = "https://fruit-mart-server.onrender.com/api/v1/orders/confirm-shipping";
     const { data } = await axios.post(url, { order_id: orderId });
     if(data.result.modifiedCount){
       verifyDone(data?.message);

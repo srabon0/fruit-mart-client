@@ -43,7 +43,7 @@ const ShippingInfo = () => {
         "Content-Type": "application/json",
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       };
-      const url = "http://localhost:5000/api/v1/orders/place-order";
+      const url = "https://fruit-mart-server.onrender.com/api/v1/orders/place-order";
       const { data } = await axios.post(url, orderObject, { headers: headers });
       console.log(data)
     }

@@ -8,7 +8,7 @@ const deleteFruit = (id)=>{
             "Content-Type": "application/json",
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           };
-          const url = `http://localhost:5000/api/v1/fruits/${id}`;
+          const url = `https://fruit-mart-server.onrender.com/api/v1/fruits/${id}`;
           const { data } = await axios.delete(url, { headers: headers });
           console.log("deleted ",data)
         if(data.operation.deletedCount){

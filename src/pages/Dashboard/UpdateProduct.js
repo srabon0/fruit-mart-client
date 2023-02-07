@@ -23,7 +23,7 @@ const UpdateProduct = () => {
         "Content-Type": "application/json",
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       };
-      const url = `http://localhost:5000/api/v1/fruits/${id}`;
+      const url = `https://fruit-mart-server.onrender.com/api/v1/fruits/${id}`;
       const { data } = await axios.get(url, { headers: headers });
       console.log(data);
       setFruit(data.fruit);
@@ -71,7 +71,7 @@ const UpdateProduct = () => {
       company: company,
     };
     console.log("editing fruit object", fruitObject);
-    const url = `http://localhost:5000/api/v1/fruits/update-fruit/${_id}`;
+    const url = `https://fruit-mart-server.onrender.com/api/v1/fruits/update-fruit/${_id}`;
     const { data } = await axios.put(url, fruitObject);
     console.log(data);
   };

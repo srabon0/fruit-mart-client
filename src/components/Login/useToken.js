@@ -10,7 +10,7 @@ const useToken = (user) => {
   };
   useEffect(() => {
     if (email) {
-      const url = `http://localhost:5000/api/v1/users/validate`;
+      const url = `https://fruit-mart-server.onrender.com/api/v1/users/validate`;
       axios.post(url, currentUser, { headers }).then((res) => {
         if(res.data){
           const token = res.data.token;

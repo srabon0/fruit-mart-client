@@ -8,7 +8,7 @@ const useAdmin = (user) => {
     console.log("User email to check is admin or nt", user?.email)
     const email = user?.email;
     if (email) {
-        const url = `http://localhost:5000/api/v1/users/admin/${email}`
+        const url = `https://fruit-mart-server.onrender.com/api/v1/users/admin/${email}`
        
         const headers = {
             "Content-Type": "application/json",

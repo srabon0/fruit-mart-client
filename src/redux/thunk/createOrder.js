@@ -9,7 +9,7 @@
 //             "Content-Type": "application/json",
 //             authorization: `Bearer ${localStorage.getItem("accessToken")}`,
 //           };
-//           const url = `http://localhost:5000/api/v1/orders/`;
+//           const url = `https://fruit-mart-server.onrender.com/api/v1/orders/`;
 //           const { data } = await axios.post(url, orderData, { headers: headers });
 //           console.log("Order create ",data)
 //           dispatch()

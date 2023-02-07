@@ -3,7 +3,7 @@ import { loadCurrentUser } from "../actions/userAction";
 
 const loadUserInfo = (email)=>{
     return async(dispatch,getState)=>{
-        const url = `http://localhost:5000/api/v1/users/current/${email}`
+        const url = `https://fruit-mart-server.onrender.com/api/v1/users/current/${email}`
         const {data} = await axios.get(url);
         console.log(data.userdata)
         if(data){

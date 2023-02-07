@@ -44,7 +44,7 @@ const AddProduct = () => {
       company:company,
     };
     console.log(fruitObject);
-    const url = `http://localhost:5000/api/v1/fruits/addfruit`;
+    const url = `https://fruit-mart-server.onrender.com/api/v1/fruits/addfruit`;
     const { data } = await axios.post(url, fruitObject);
     console.log(data);
   };
