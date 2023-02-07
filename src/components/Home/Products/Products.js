@@ -22,7 +22,7 @@ const Products = () => {
   if (keyword) {
     content = fruits
       ?.filter((v) => {
-        if (v.name.includes(keyword)) {
+        if (v.name.toLowerCase().includes(keyword.toLowerCase())) {
           return v.name.includes(keyword);
         }
       })
@@ -79,7 +79,7 @@ const Products = () => {
           <div className="hidden space-y-4 lg:block">
             <div>
               <label
-                for="SortBy"
+                htmlFor="SortBy"
                 className="block text-xs font-medium text-gray-700"
               >
                 Sort By
@@ -139,7 +139,7 @@ const Products = () => {
                     <ul className="p-4 space-y-1 border-t border-gray-200">
                       <li>
                         <label
-                          for="FilterInStock"
+                          htmlFor="FilterInStock"
                           className="inline-flex items-center gap-2"
                         >
                           <input
@@ -156,7 +156,7 @@ const Products = () => {
 
                       {/* <li>
                         <label
-                          for="FilterPreOrder"
+                          htmlFor="FilterPreOrder"
                           className="inline-flex items-center gap-2"
                         >
                           <input
@@ -173,7 +173,7 @@ const Products = () => {
 
                       {/* <li>
                         <label
-                          for="FilterOutOfStock"
+                          htmlFor="FilterOutOfStock"
                           className="inline-flex items-center gap-2"
                         >
                           <input
@@ -230,7 +230,7 @@ const Products = () => {
                     <div className="p-4 border-t border-gray-200">
                       <div className="flex justify-between gap-4">
                         <label
-                          for="FilterPriceFrom"
+                          htmlFor="FilterPriceFrom"
                           className="flex items-center gap-2"
                         >
                           <span className="text-sm text-gray-600">$</span>
@@ -244,7 +244,7 @@ const Products = () => {
                         </label>
 
                         <label
-                          for="FilterPriceTo"
+                          htmlFor="FilterPriceTo"
                           className="flex items-center gap-2"
                         >
                           <span className="text-sm text-gray-600">$</span>

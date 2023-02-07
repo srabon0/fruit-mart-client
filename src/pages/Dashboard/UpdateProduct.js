@@ -84,7 +84,7 @@ const UpdateProduct = () => {
       <form onSubmit={updateFruit}>
         <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
           <div>
-            <label className="text-gray-700 " for="fruitName">
+            <label className="text-gray-700 " htmlFor="fruitName">
               Fruit Name
             </label>
             <input
@@ -98,7 +98,7 @@ const UpdateProduct = () => {
           </div>
 
           <div>
-            <label className="text-gray-700 " for="price">
+            <label className="text-gray-700 " htmlFor="price">
               Price
             </label>
             <input
@@ -112,7 +112,7 @@ const UpdateProduct = () => {
           </div>
 
           <div>
-            <label className="text-gray-700 " for="password">
+            <label className="text-gray-700 " htmlFor="password">
               Quantity
             </label>
             <input
@@ -126,7 +126,7 @@ const UpdateProduct = () => {
           </div>
 
           <div>
-            <label className="text-gray-700 " for="passwordConfirmation">
+            <label className="text-gray-700 " htmlFor="passwordConfirmation">
               Picture
             </label>
             <input
@@ -138,7 +138,7 @@ const UpdateProduct = () => {
           </div>
         </div>
         <div className="w-full my-4">
-          <label className="text-gray-700 " for="description">
+          <label className="text-gray-700 " htmlFor="description">
             Description
           </label>
 
@@ -152,7 +152,7 @@ const UpdateProduct = () => {
         </div>
 
         <div>
-          <label className="text-gray-700" for="fruitName">
+          <label className="text-gray-700" htmlFor="fruitName">
             Company
           </label>
           <input

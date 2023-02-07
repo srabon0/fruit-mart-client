@@ -55,19 +55,19 @@ const AddProduct = () => {
     <form onSubmit={addFruit}>
         <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
-                <label className="text-gray-700 " for="fruitName">Product Name</label>
+                <label className="text-gray-700 " htmlFor="fruitName">Product Name</label>
                 <input required  id="fruitName" name="fruitName" type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md    focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 -300 focus:outline-none focus:ring" />
             </div>
 
             <div>
-                <label className="text-gray-700 " for="price">Price</label>
+                <label className="text-gray-700 " htmlFor="price">Price</label>
                 <input required  type="number"
             name="price"
             id="price" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md    focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 -300 focus:outline-none focus:ring"/>
             </div>
 
             <div>
-                <label className="text-gray-700 " for="password">Quantity</label>
+                <label className="text-gray-700 " htmlFor="password">Quantity</label>
                 <input required
                 id="quantity" 
                 type="number"
@@ -76,7 +76,7 @@ const AddProduct = () => {
             </div>
 
             <div>
-                <label className="text-gray-700 " for="passwordConfirmation">Picture</label>
+                <label className="text-gray-700 " htmlFor="passwordConfirmation">Picture</label>
                 <input required 
                 onChange={onUploadFileChange}
                 type="file"
@@ -84,13 +84,13 @@ const AddProduct = () => {
             </div>
         </div>
         <div className="w-full my-4">
-        <label className="text-gray-700 " for="description">Description</label>
+        <label className="text-gray-700 " htmlFor="description">Description</label>
 
             <textarea name="desc" id="desc" className="block w-full h-40 px-4 py-2 text-gray-700 bg-white border rounded-md    focus:border-blue-400 -300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 " placeholder="description" ></textarea>
         </div>
 
         <div>
-                <label className="text-gray-700" for="fruitName">Company</label>
+                <label className="text-gray-700" htmlFor="fruitName">Company</label>
                 <input required id="company" name="company" type="text" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md    focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 -300 focus:outline-none focus:ring" />
           </div>
 

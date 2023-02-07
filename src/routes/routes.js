@@ -16,6 +16,7 @@ import AddProduct from "../pages/Dashboard/AddProduct";
 import Payment from "../pages/Dashboard/Payment";
 import Orders from "../pages/Dashboard/Orders";
 import UpdateProduct from "../pages/Dashboard/UpdateProduct";
+import RequireAdmin from "../pages/Auth/RequireAdmin/RequireAdmin";
 
 const routes = createBrowserRouter([
   {
@@ -82,7 +83,11 @@ const routes = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <ProductList />, //this will also require admin
+        element: <Orders /> , //this will also require admin
+      },
+      {
+        path: "/dashboard/orders",
+        element: <Orders /> , //this will also require admin
       },
       {
         path: "add-product",
@@ -97,8 +102,8 @@ const routes = createBrowserRouter([
         element: <Payment />,
       },
       {
-        path: "orders",
-        element: <Orders />,
+        path: "product-list",
+        element: <RequireAdmin><ProductList /></RequireAdmin>,
       },
     ],
   },

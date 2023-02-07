@@ -1,12 +1,13 @@
 import axios from "axios";
-import {  useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import loadAllOrders from "../../../redux/thunk/fetchOrder";
 
 const OrderRow = ({ order, index, modalOrder }) => {
-
+  const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.userState.authUser);
   const verifyDone = (data) => {
-    toast(data)
+    toast(data);
   };
   const initiatePayment = (id) => {
     const url = "http://localhost:5000/payment/ssl-request/" + id;
@@ -18,19 +19,25 @@ const OrderRow = ({ order, index, modalOrder }) => {
     console.log("verify payment", orderId);
     const url = "http://localhost:5000/payment/verify";
     const { data } = await axios.post(url, { order_id: orderId });
-    console.log("ihope works fine", data);
-    verifyDone(data?.message);
+    if(data.result.modifiedCount){
+      verifyDone(data?.message);
+      dispatch(loadAllOrders());
+      
+    }
   };
   const confirmShipment = async (orderId) => {
     console.log("verify payment", orderId);
     const url = "http://localhost:5000/api/v1/orders/confirm-shipping";
     const { data } = await axios.post(url, { order_id: orderId });
-    console.log("ihope works fine", data);
-    verifyDone(data?.message);
+    if(data.result.modifiedCount){
+      verifyDone(data?.message);
+      dispatch(loadAllOrders());
+      
+    }
   };
-  
+
   const { setModalOrder } = modalOrder;
-  
+
   const {
     _id,
     name,
@@ -63,96 +70,127 @@ const OrderRow = ({ order, index, modalOrder }) => {
         <span className="badge badge-ghost badge-sm">{email}</span>
       </td>
       <td>{subtotal}</td>
-      <td className="flex">
-        {!payment && !currentUser.role == "Admin" && (
-          <button
-            onClick={() => {
-              initiatePayment(_id);
-            }}
-            className="btn btn-success text-white btn-sm"
-          >
-            Pay
-          </button>
-        )}
-        {!payment && currentUser.role == "Admin" && (
-          <button
-            // onClick={() => {
-            //   initiatePayment(_id);
-            // }}
-            className="btn btn-warning text-white btn-sm"
-          >
-            Unpaid
-          </button>
-        )}
-        {payment == "pending" &&
-          transaction_id &&
-          !currentUser.role == "Admin" && (
-            <div>
-              <button className="btn btn-success text-white btn-sm">
-                Pending
-              </button>
-              <br />
-              <p className="badge badge-ghost badge-sm">
-                txnid : {transaction_id}
-              </p>
-              <br />
-              <p className="badge badge-ghost badge-sm">
-                Date: {payment_date.split("T")[0]}
-              </p>
-            </div>
-          )}
-        {payment == "pending" &&
-          transaction_id &&
-          currentUser.role == "Admin" && (
-            <div>
+      {/* admin  */}
+      {currentUser.role == "Admin" && (
+        <>
+          <td className="flex">
+            {!payment && currentUser.role == "Admin" && (
               <button
-                onClick={() => verifyPayment(_id)}
+                className="btn btn-warning text-white btn-sm"
+              >
+                Unpaid
+              </button>
+            )}
+            
+            {payment == "pending" &&
+              transaction_id &&
+              currentUser.role == "Admin" && (
+                <div>
+                  <button
+                    onClick={() => verifyPayment(_id)}
+                    className="btn btn-success text-white btn-sm"
+                  >
+                    Verify
+                  </button>
+                  <br />
+                  <p className="badge badge-ghost badge-sm">
+                    txnid : {transaction_id}
+                  </p>
+                  <br />
+                  <p className="badge badge-ghost badge-sm">
+                    Date: {payment_date.split("T")[0]}
+                  </p>
+                </div>
+              )}
+            {payment == "paid" && transaction_id && (
+              <div>
+                <button
+                  // onClick={()=>verifyPayment(_id)}
+                  className="btn bg-green-600 border-0 text-white btn-sm"
+                >
+                  Paid
+                </button>
+                <br />
+                <p className="badge badge-ghost badge-sm">
+                  txnid : {transaction_id}
+                </p>
+                <br />
+                <p className="badge badge-ghost badge-sm">
+                  Date: {payment_date.split("T")[0]}
+                </p>
+              </div>
+            )}
+            {transaction_id && payment == "paid" &&
+              currentUser.role == "Admin" &&
+              !shipment_status && (
+                <div>
+                  <button
+                    onClick={() => confirmShipment(_id)}
+                    className="btn bg-orange-600 border-0 text-white btn-sm"
+                  >
+                    Confirm Shipping
+                  </button>
+                </div>
+              )}
+          </td>
+        </>
+      )}
+
+      {/* admin end  */}
+
+      {/* user */}
+      {currentUser.role == "user" && (
+        <>
+          <td className="flex">
+            {!payment && (
+              <button
+                onClick={() => {
+                  initiatePayment(_id);
+                }}
                 className="btn btn-success text-white btn-sm"
               >
-                Verify
+                Pay
               </button>
-              <br />
-              <p className="badge badge-ghost badge-sm">
-                txnid : {transaction_id}
-              </p>
-              <br />
-              <p className="badge badge-ghost badge-sm">
-                Date: {payment_date.split("T")[0]}
-              </p>
-            </div>
-          )}
-        {payment == "paid" && transaction_id && (
-          <div>
-            <button
-              // onClick={()=>verifyPayment(_id)}
-              className="btn bg-green-600 border-0 text-white btn-sm"
-            >
-              Paid
-            </button>
-            <br />
-            <p className="badge badge-ghost badge-sm">
-              txnid : {transaction_id}
-            </p>
-            <br />
-            <p className="badge badge-ghost badge-sm">
-              Date: {payment_date.split("T")[0]}
-            </p>
-          </div>
-        )}
-        {
-          transaction_id &&
-          currentUser.role == "Admin" &&
-          !shipment_status && (
-            <div>
-              <button
-                onClick={() => confirmShipment(_id)}
-                className="btn bg-orange-600 border-0 text-white btn-sm"
-              >
-                Confirm Shipping
-              </button>
-            </div>
-          )}
-      </td>
+            )}
+            { payment == "pending" &&
+              transaction_id &&
+              currentUser.role == "user" && (
+                <div>
+                  <button className="btn btn-warning text-white btn-sm">
+                    Pending
+                  </button>
+                  <br />
+                  <p className="badge badge-ghost badge-sm">
+                    txnid : {transaction_id}
+                  </p>
+                  <br />
+                  <p className="badge badge-ghost badge-sm">
+                    Date: {payment_date.split("T")[0]}
+                  </p>
+                </div>
+              )}
+              {payment == "paid" &&
+              transaction_id &&
+              currentUser.role == "user" && (
+                <div>
+                  <button className="btn btn-success text-white btn-sm">
+                    Paid
+                  </button>
+                  <br />
+                  <p className="badge badge-ghost badge-sm">
+                    txnid : {transaction_id}
+                  </p>
+                  <br />
+                  <p className="badge badge-ghost badge-sm">
+                    Date: {payment_date.split("T")[0]}
+                  </p>
+                </div>
+              )}
+          </td>
+        </>
+      )}
+
+      {/* user end  */}
 
       {!shipment_status && (
         <th>

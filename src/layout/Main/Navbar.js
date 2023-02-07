@@ -160,9 +160,9 @@ const Navbar = () => {
               <span className="font-bold text-lg">
               {cart.length} items
               </span>
-              <span className="text-info">Subtotal: $ {cartTotal.toFixed(2)}</span>
+              <span className="text-black font-medium text-sm">Subtotal: $ {cartTotal.toFixed(2)}</span>
               <div className="card-actions">
-                <Link to="/cart" className="btn btn-primary btn-block">
+                <Link to="/cart" className="btn bg-orange-600 btn-sm border-0 text-white btn-block">
                   View cart
                 </Link>
               </div>
@@ -212,6 +212,7 @@ const Navbar = () => {
           </div>
         ) : (
           <button
+          className="btn btn-sm btn-secondary"
             onClick={() => {
               navigate("/login");
             }}
